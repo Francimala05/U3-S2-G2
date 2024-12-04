@@ -1,26 +1,25 @@
-import { Component } from 'react'
+
 import { Card } from 'react-bootstrap'
 import PropTypes from 'prop-types'
 
-class SingleBook extends Component {
+const SingleBook = (selectedBook, book, changeSelectedBook) => {
 
-  render() {
+
     return (
       <>
         <Card
-        
-          onClick={() => this.props.changeSelectedBook(this.props.book.asin)}
+         
           style={{
             border:
-              this.props.selectedBook === this.props.book.asin
+              selectedBook === book.asin
                 ? '3px solid red'
                 : 'none',
           }}
         >
-          <Card.Img variant="top" src={this.props.book.img} />
+          <Card.Img variant="top" src={book.img}  onClick={() => changeSelectedBook(book.asin)} />
           <Card.Body>
             <Card.Title style={{ color: 'black' }}>
-              {this.props.book.title}
+              {book.title}
             </Card.Title>
           </Card.Body>
         </Card>
@@ -28,7 +27,7 @@ class SingleBook extends Component {
       </>
     )
   }
-}
+
 SingleBook.propTypes = {
   book: PropTypes.shape({
     asin: PropTypes.string.isRequired,
